@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --foreground-rgb: 229, 229, 229;
+    --background-start-rgb: 10, 10, 10;
+    --background-end-rgb: 0, 0, 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    color: #e5e5e5;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Glowing background */
+.bg-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
+    top: -200px;
+    left: -200px;
+    filter: blur(80px);
+    animation: floatGlow 8s infinite alternate ease-in-out;
+    z-index: -1; /* Keep it behind the content */
+}
+
+@keyframes floatGlow {
+    from { transform: translate(0,0); }
+    to { transform: translate(200px,150px); }
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 40px 20px;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    opacity: 0.6;
+    margin-top: 5px;
+}
+
+/* Quote card */
+.quote-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease;
+}
+
+/* Input card */
+.input-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .input-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+input, select {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #111;
+    color: white;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus, select:focus {
+    transform: scale(1.03);
+    border: 1px solid #666;
+}
+
+button {
+    background: white;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #ddd;
+}
+
+/* Filters */
+.filters {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.filters button {
+    margin: 5px;
+    background: #1a1a1a;
+    color: white;
+    border: 1px solid #333;
+}
+
+.filters button:hover {
+    background: #2a2a2a;
+}
+
+/* Task list */
+ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+li {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: popIn 0.3s ease;
+    transition: 0.2s;
+}
+
+li:hover {
+    transform: translateX(5px);
+    border-color: rgba(255,255,255,0.2);
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* Priority colors matching your specific classes */
+.high { border-left: 4px solid #ff4d4d; }
+.medium { border-left: 4px solid #ffb84d; }
+.low { border-left: 4px solid #4dff88; }
